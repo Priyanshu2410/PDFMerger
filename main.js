@@ -4,9 +4,10 @@ const app = express()
 const multer  = require('multer')
 const {mergePdfs}  = require('./test.js')
 
+const PORT = process.env.PORT || 3000
+
 const upload = multer({ dest: 'uploads/' })
 app.use('/static', express.static('public'))
-const port = 3000
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "template/index.html"))
@@ -21,6 +22,6 @@ app.post('/merge', upload.array('pdfs', 2), async (req, res, next)=> {
 
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Example app listening on port http://localhost:${PORT}`)
 })
